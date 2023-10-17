@@ -22,6 +22,7 @@ public class LinearEquationLogic {
         y1 = Integer.parseInt(coord1.substring(coord1.indexOf(",") + 2, coord1.indexOf(")")));
         x2 = Integer.parseInt(coord2.substring(1, coord2.indexOf(",")));
         y2 = Integer.parseInt(coord2.substring(coord2.indexOf(",") + 2, coord2.indexOf(")")));
+
         LinearEquation equation = new LinearEquation(x1, y1, x2, y2);
         //System.out.println(x1 + " " + y1 + " " + x2 + " " + y2);
     }
