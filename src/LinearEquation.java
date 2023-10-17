@@ -13,6 +13,24 @@ public class LinearEquation {
     }
 
     public double yIntercept() {
-        return 0;
+        double yIntercept = y1;
+        yIntercept -= slope() * x1;
+        return (double) Math.round(yIntercept * 100) / 100;
+    }
+
+    public double slope() {
+        double slope = y2 - y1;
+        slope /= x2 - x1;
+        return (double) Math.round(slope * 100) / 100;
+    }
+
+    public String equation() {
+        String equation = "y = ";
+        if (slope() == -1) {
+            equation += "-x ";
+        } else if (slope() / (int) slope() > 1) {
+            equation +=
+        }
+
     }
 }
