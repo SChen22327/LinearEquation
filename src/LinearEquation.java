@@ -34,13 +34,17 @@ public class LinearEquation {
 
     public String equation() {
         String equation;
-        if (undefined == false) {
+        if (!undefined) {
             equation = "y = ";
             if (slope() == -1) {
                 equation += "-x ";
+            } else if(slope() == 1) {
+                equation += "x ";
             } else if (slope() == 0) {
-                if (yIntercept() == 0) {
+                if (yIntercept() / (int) yIntercept() != 1) {
                     equation += yIntercept();
+                } else {
+                    equation += (int) yIntercept();
                 }
             } else if (slope() / (int) slope() != 1) {
                 for (int i = 2; i > 1; i++) {
@@ -52,13 +56,17 @@ public class LinearEquation {
                     }
                 }
                 equation += "x ";
+            } else if (slope() / (int) slope() == 1) {
+                equation += (int) slope() + "x ";
             } else {
                 equation += roundedToHundredth(slope()) + "x ";
             }
-            if (yIntercept() > 0) {
-                equation += "+ " + yIntercept();
-            } else if (yIntercept() < 0) {
-                equation += "- " + Math.abs(yIntercept());
+            if (slope() != 0) {
+                if (yIntercept() > 0) {
+                    equation += "+ " + yIntercept();
+                } else if (yIntercept() < 0) {
+                    equation += "- " + Math.abs(yIntercept());
+                }
             }
         } else {
             equation = "x = " + x1;
@@ -67,7 +75,7 @@ public class LinearEquation {
     }
 
     public String coordinateForX(double x) {
-        return "(" + x + ", " + (slope() * x + yIntercept()) + ")";
+        return "(" + x + ", " + String.format("%.2f",slope() * x + yIntercept()) + ")";
     }
 
     public String lineInfo() {

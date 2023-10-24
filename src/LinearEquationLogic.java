@@ -10,11 +10,13 @@ public class LinearEquationLogic {
         scan = new Scanner(System.in);
     }
     public void start() {
-        while (endLoop == false) {
+        while (!endLoop) {
             getCoords();
             createLineEquation();
             System.out.println(equation.lineInfo());
-            System.out.println(getCoordForX());
+            if(!checkUndefined()) {
+                System.out.println(getCoordForX());
+            }
             endLoop = endLoop();
         }
     }
@@ -33,18 +35,12 @@ public class LinearEquationLogic {
     }
 
     public boolean checkUndefined() {
-        try {
-            int testNum = x1 / x2;
-        } catch (Exception e) {
-            return true;
-        }
-        return false;
+        return x2 - x1 == 0;
     }
 
     public void createLineEquation() {
-        if (checkUndefined() == false) {
+        if (!checkUndefined()) {
             equation = new LinearEquation(x1, y1, x2, y2);
-            //System.out.println(x1 + " " + y1 + " " + x2 + " " + y2);
         } else {
             equation = new LinearEquation(checkUndefined(), y1, y2);
         }
@@ -58,10 +54,6 @@ public class LinearEquationLogic {
 
     public boolean endLoop() {
         System.out.println("Would you like to enter a new pair of coordinates? y/n");
-        if (scan.nextLine().equals("n") || scan.nextLine().equals("no")) {
-            return true;
-        } else {
-            return false;
-        }
+        return scan.nextLine().equals("n") || scan.nextLine().equals("no");
     }
 }
