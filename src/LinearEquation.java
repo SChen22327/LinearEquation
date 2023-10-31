@@ -7,9 +7,11 @@ public class LinearEquation {
         this.x2 = x2;
         this.y2 = y2;
     }
-    public LinearEquation(boolean undefined, int y1, int y2) {
+    public LinearEquation(int x, boolean undefined, int y1, int y2) {
         this.y1 = y1;
         this.y2 = y2;
+        this.x1 = x;
+        this.x2 = x;
         this.undefined = undefined;
     }
     public double roundedToHundredth(double toRound) {

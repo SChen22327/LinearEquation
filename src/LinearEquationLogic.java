@@ -1,4 +1,3 @@
-import javax.sound.sampled.Line;
 import java.util.Scanner;
 public class LinearEquationLogic {
     int x1, y1, x2, y2;
@@ -15,7 +14,7 @@ public class LinearEquationLogic {
             createLineEquation();
             System.out.println(equation.lineInfo());
             if(!checkUndefined()) {
-                System.out.println(getCoordForX());
+                System.out.println("The point on the line is " + getCoordForX());
             }
             endLoop = endLoop();
         }
@@ -27,6 +26,7 @@ public class LinearEquationLogic {
         String coord1 = scan.nextLine();
         System.out.print("Enter coordinate pair 2: ");
         String coord2 = scan.nextLine();
+        System.out.println();
 
         x1 = Integer.parseInt(coord1.substring(1, coord1.indexOf(",")));
         y1 = Integer.parseInt(coord1.substring(coord1.indexOf(",") + 2, coord1.indexOf(")")));
@@ -42,18 +42,19 @@ public class LinearEquationLogic {
         if (!checkUndefined()) {
             equation = new LinearEquation(x1, y1, x2, y2);
         } else {
-            equation = new LinearEquation(checkUndefined(), y1, y2);
+            equation = new LinearEquation(x1, checkUndefined(), y1, y2);
         }
     }
 
     public String getCoordForX() {
-        System.out.print("Enter an x-value: ");
+        System.out.print("\nEnter an x-value: ");
         numForX = scan.nextDouble();
+        System.out.println();
         return equation.coordinateForX(numForX);
     }
 
     public boolean endLoop() {
-        System.out.println("Would you like to enter a new pair of coordinates? y/n");
+        System.out.print("\nWould you like to enter a new pair of coordinates? y/n ");
         return scan.nextLine().equals("n") || scan.nextLine().equals("no");
     }
 }
